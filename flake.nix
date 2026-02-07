@@ -4,9 +4,11 @@
   inputs = {
     # NixOS official package source, using the nixos-25.11 branch here
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.11";
+
+    nix-sweep.url = "github:jzbor/nix-sweep";
   };
 
-  outputs = { self, nixpkgs, ... }@inputs: {
+  outputs = { self, nixpkgs, nix-sweep, ... }@inputs: {
     # Please replace my-nixos with your hostname
     nixosConfigurations.repeater = nixpkgs.lib.nixosSystem {
       modules = [

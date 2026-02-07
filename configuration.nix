@@ -111,7 +111,6 @@
 
   # Enable Hyprland
   services.displayManager.sddm.enable = true;
-  services.desktopManager.plasma6.enable = true;
   programs.hyprland.enable = true;
   xdg.portal.enable = true;
   xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
@@ -210,6 +209,9 @@
   zip
   unzip
   killall
+  bat
+  tree
+  tealdeer
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
