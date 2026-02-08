@@ -1,20 +1,22 @@
 {
   description = "A simple NixOS flake";
 
-  inputs = {
     # NixOS official package source, using the nixos-25.11 branch here
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.11";
+  inputs.nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.11";
+    # nix-sweep
+  inputs.nix-sweep.url = "github:jzbor/nix-sweep";
+  # home manager
+  inputs.home-manager.url = github:nix-community/home-manager;
 
-    nix-sweep.url = "github:jzbor/nix-sweep";
-  };
-
-  outputs = { self, nixpkgs, nix-sweep, ... }@inputs: {
+  outputs = { self, nixpkgs, nix-sweep, ... }@attrs: {
     # Please replace my-nixos with your hostname
     nixosConfigurations.repeater = nixpkgs.lib.nixosSystem {
+      system = "x86_64-linux";
+      specialArgs = attrs;
       modules = [
         # Import the previous configuration.nix we used,
         # so the old configuration file still takes effect
-        ./configuration.nix
+        /home/soldafon/dotfiles/configuration.nix
       ];
     };
   };

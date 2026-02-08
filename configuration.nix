@@ -2,15 +2,24 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, lib, inputs, ... }:
+{ config, pkgs, lib, inputs, nix-sweep, home-manager, ... }:
 
 
 {
   imports =
     [ # Include the results of the hardware scan.
       /etc/nixos/hardware-configuration.nix
+      home-manager.nixosModules.default
+      nix-sweep.nixosModules.default
     ];
+  # nix-sweep config
+  services.nix-sweep = {
+    enable = true;
+    interval = "daily";
+    removeOlder = "2d";
+  };
 
+  # many hateful nights config
   security.pki.certificateFiles = [];
   services.openssh.enable = true;
   security.pki.installCACerts = true;
