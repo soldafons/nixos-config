@@ -48,11 +48,29 @@
         "type": "github"
       }
     },
+    "hyprKCS": {
+      "inputs": {
+        "nixpkgs": "nixpkgs_2"
+      },
+      "locked": {
+        "lastModified": 1770453404,
+        "narHash": "sha256-cXzhWdWGhkRZfpw5r2SOvGz45eRhAGkvlOl31eB6qrU=",
+        "owner": "kosa12",
+        "repo": "hyprKCS",
+        "rev": "4ac27e9db262047c24da44a60061b1da00f2ff0b",
+        "type": "github"
+      },
+      "original": {
+        "owner": "kosa12",
+        "repo": "hyprKCS",
+        "type": "github"
+      }
+    },
     "nix-sweep": {
       "inputs": {
         "cf": "cf",
         "crane": "crane",
-        "nixpkgs": "nixpkgs_2"
+        "nixpkgs": "nixpkgs_3"
       },
       "locked": {
         "lastModified": 1765575848,
@@ -86,6 +104,22 @@
     },
     "nixpkgs_2": {
       "locked": {
+        "lastModified": 1767767207,
+        "narHash": "sha256-Mj3d3PfwltLmukFal5i3fFt27L6NiKXdBezC1EBuZs4=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "5912c1772a44e31bf1c63c0390b90501e5026886",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "nixos-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "nixpkgs_3": {
+      "locked": {
         "lastModified": 1762596750,
         "narHash": "sha256-rXXuz51Bq7DHBlfIjN7jO8Bu3du5TV+3DSADBX7/9YQ=",
         "owner": "nixos",
@@ -100,7 +134,7 @@
         "type": "github"
       }
     },
-    "nixpkgs_3": {
+    "nixpkgs_4": {
       "locked": {
         "lastModified": 1769089682,
         "narHash": "sha256-9yA/LIuAVQq0lXelrZPjLuLVuZdm03p8tfmHhnDIkms=",
@@ -119,8 +153,9 @@
     "root": {
       "inputs": {
         "home-manager": "home-manager",
+        "hyprKCS": "hyprKCS",
         "nix-sweep": "nix-sweep",
-        "nixpkgs": "nixpkgs_3"
+        "nixpkgs": "nixpkgs_4"
       }
     }
   },

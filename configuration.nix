@@ -10,9 +10,7 @@
     [ # Include the results of the hardware scan.
       /etc/nixos/hardware-configuration.nix
       home-manager.nixosModules.default
-      nix-sweep.nixosModules.default
-      hyprpicker.nixosModules.default
-      hyprKCS.nixosModules.default
+      nix-sweep.nixosModules.default 
     ];
   # nix-sweep config
   services.nix-sweep = {
@@ -223,6 +221,10 @@
   bat
   tree
   tealdeer
+  hyprpicker
+  rustc
+  cargo
+  gtk4
   ];
 
   # Some programs need SUID wrappers, can be configured further or are

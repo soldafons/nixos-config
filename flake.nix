@@ -7,12 +7,10 @@
   inputs.nix-sweep.url = "github:jzbor/nix-sweep";
   # home manager
   inputs.home-manager.url = "github:nix-community/home-manager";
-  # hyprpicker
-  inputs.hyprpicker.url = "github:hyprwm/hyprpicker";
   # hyprKCS
   inputs.hyprKCS.url = "github:kosa12/hyprKCS";
 
-  outputs = { self, nixpkgs, nix-sweep, home-manager, hyprpicker, hyprKCS, ... }@attrs: {
+  outputs = { self, nixpkgs, nix-sweep, home-manager, hyprKCS, ... }@attrs: {
     # Please replace my-nixos with your hostname
     nixosConfigurations.repeater = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
@@ -20,7 +18,7 @@
       modules = [
         # Import the previous configuration.nix we used,
         # so the old configuration file still takes effect
-        /home/soldafon/dotfiles/configuration.nix
+        ./configuration.nix
       ];
     };
   };
