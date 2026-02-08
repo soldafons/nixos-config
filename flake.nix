@@ -6,9 +6,13 @@
     # nix-sweep
   inputs.nix-sweep.url = "github:jzbor/nix-sweep";
   # home manager
-  inputs.home-manager.url = github:nix-community/home-manager;
+  inputs.home-manager.url = "github:nix-community/home-manager";
+  # hyprpicker
+  inputs.hyprpicker.url = "github:hyprwm/hyprpicker";
+  # hyprKCS
+  inputs.hyprKCS.url = "github:kosa12/hyprKCS";
 
-  outputs = { self, nixpkgs, nix-sweep, ... }@attrs: {
+  outputs = { self, nixpkgs, nix-sweep, home-manager, hyprpicker, hyprKCS, ... }@attrs: {
     # Please replace my-nixos with your hostname
     nixosConfigurations.repeater = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";

@@ -11,6 +11,8 @@
       /etc/nixos/hardware-configuration.nix
       home-manager.nixosModules.default
       nix-sweep.nixosModules.default
+      hyprpicker.nixosModules.default
+      hyprKCS.nixosModules.default
     ];
   # nix-sweep config
   services.nix-sweep = {
