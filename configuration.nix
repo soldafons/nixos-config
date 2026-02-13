@@ -2,26 +2,31 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, lib, inputs, nix-sweep, home-manager, ... }:
+{ config, pkgs, lib, inputs, ... }:
 
 
 {
   imports =
     [ # Include the results of the hardware scan.
       /etc/nixos/hardware-configuration.nix
-      home-manager.nixosModules.default
-      nix-sweep.nixosModules.default 
     ];
-  # nix-sweep config
-  services.nix-sweep = {
-    enable = true;
-    interval = "daily";
-    removeOlder = "2d";
-  };
 
-  # many hateful nights config
+  # Automatic garbage collection
+  nix.gc = {
+    automatic = true;
+    dates = "daily";
+    options = "--delete-older-than 2d";
+  };
+  # Enable ZRam
+  zramSwap = {
+    enable = true;
+    priority = 100;
+    algorithm = "lz4";
+    memoryPercent = 50;
+  };
+  # NVIDIA drivers not being able to install
   security.pki.certificateFiles = [];
-  services.openssh.enable = true;
+  services.openssh.enable = true; # Enable OpenSSH daemon
   security.pki.installCACerts = true;
 
   environment.variables = {
@@ -33,13 +38,13 @@
     "${pkgs.cacert}/etc/ssl/certs/ca-bundle.crt";
 
   services.resolved.enable = true;
-  services.resolved.fallbackDns = [ "1.1.1.1" "8.8.8.8" ];
-  # opengl
+  services.resolved.settings.Resolve.FallbackDNS = [ "1.1.1.1" "8.8.8.8" ];
+  # Enable OpenGL
   hardware.graphics = {
     enable = true;
     enable32Bit = true;
   };
-  # nvidia
+  # NVIDIA GPU drivers setup
   services.xserver.videoDrivers = ["nvidia"];
   hardware.nvidia.open = false;
   hardware.nvidia.modesetting.enable = true;
@@ -48,7 +53,7 @@
   nixpkgs.config.nvidia.acceptLicense = true;
   hardware.nvidia.package = config.boot.kernelPackages.nvidiaPackages.production;
 
-  # steam
+  # Steam tweaks
   programs.steam.enable = true;
   programs.steam.gamescopeSession.enable = true;
   programs.gamemode.enable = true;
@@ -59,24 +64,27 @@
     NIXOS_OZONE_WL = "1";
   };
 
-  # enable flakes
+  # Enable flakes
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
-  # enable unfree pkgs
+  # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
-  # enable mullvad
+  # Enable mullvad
   services.mullvad-vpn.enable = true;
-  # install fonts
+  # Enable earlyOOM
+  services.earlyoom.enable = true;
+  # Font installation
   fonts.packages = with pkgs; [
   nerd-fonts.jetbrains-mono
   _0xproto
   nerd-fonts.fantasque-sans-mono
-];
+  ];
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
+  boot.plymouth.enable = true;
   # Use latest kernel.
-  boot.kernelPackages = pkgs.linuxPackages_latest;
+  boot.kernelPackages = pkgs.linuxPackages_zen;
 
   networking.hostName = "repeater"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
@@ -88,11 +96,9 @@
   # Enable networking
   networking.networkmanager.enable = true;
   networking.networkmanager.dns = "systemd-resolved";
-  hardware.bluetooth.enable = true;
-  services.zerotierone.enable = true;
-  # hamachi
-  programs.haguichi.enable = true;
-  # razer
+  hardware.bluetooth.enable = true; # Enable bluetooth
+  services.zerotierone.enable = true; # Enable zerotier
+  # Open-Razer setup
   hardware.openrazer.enable = true;
   hardware.openrazer.users = ["soldafon"];
   hardware.rtl-sdr.enable = true;
@@ -162,12 +168,8 @@
     ];
   };
 
-  # Install firefox.
-  programs.firefox.enable = true;
 
-
-  # List packages installed in system profile. To search, run:
-  # $ nix search wget
+  # Install packages
   environment.systemPackages = with pkgs; [
   kitty
   librewolf
@@ -177,7 +179,6 @@
   fastfetch
   cmatrix
   cowsay
-  gparted
   libreoffice
   python314
   javaPackages.compiler.temurin-bin.jre-21
@@ -196,8 +197,6 @@
   gimp
   neovim
   openssl
-  haguichi
-  logmein-hamachi
   razer-cli
   razergenie
   vulkan-tools
@@ -225,20 +224,19 @@
   rustc
   cargo
   gtk4
+  revolt-desktop
+  sbctl
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
-  # programs.mtr.enable = true;
-  # programs.gnupg.agent = {
-  #   enable = true;
-  #   enableSSHSupport = true;
-  # };
+  programs.mtr.enable = true;
+  programs.gnupg.agent = {
+     enable = true;
+     enableSSHSupport = true;
+  };
 
   # List services that you want to enable:
-
-  # Enable the OpenSSH daemon.
-  # services.openssh.enable = true;
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];

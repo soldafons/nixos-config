@@ -1,25 +1,49 @@
 {
   description = "A simple NixOS flake";
 
-    # NixOS official package source, using the nixos-25.11 branch here
-  inputs.nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.11";
-    # nix-sweep
-  inputs.nix-sweep.url = "github:jzbor/nix-sweep";
-  # home manager
-  inputs.home-manager.url = "github:nix-community/home-manager";
-  # hyprKCS
-  inputs.hyprKCS.url = "github:kosa12/hyprKCS";
+  inputs = {
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    home-manager.url = "github:nix-community/home-manager";
+    hyprKCS.url = "github:kosa12/hyprKCS";
+    # lanzaboote
+    lanzaboote = {
+      url = "github:nix-community/lanzaboote/v1.0.0";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+  };
 
-  outputs = { self, nixpkgs, nix-sweep, home-manager, hyprKCS, ... }@attrs: {
-    # Please replace my-nixos with your hostname
-    nixosConfigurations.repeater = nixpkgs.lib.nixosSystem {
-      system = "x86_64-linux";
-      specialArgs = attrs;
-      modules = [
-        # Import the previous configuration.nix we used,
-        # so the old configuration file still takes effect
-        ./configuration.nix
-      ];
+  outputs = { self, nixpkgs, lanzaboote, home-manager, hyprKCS, ...}: {
+    nixosConfigurations = {
+      repeater = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+
+        modules = [
+	  ./configuration.nix
+          # This is not a complete NixOS configuration and you need to reference
+          # your normal configuration here.
+
+          lanzaboote.nixosModules.lanzaboote
+
+          ({ pkgs, lib, ... }: {
+
+            environment.systemPackages = [
+              # For debugging and troubleshooting Secure Boot.
+              pkgs.sbctl
+            ];
+
+            # Lanzaboote currently replaces the systemd-boot module.
+            # This setting is usually set to true in configuration.nix
+            # generated at installation time. So we force it to false
+            # for now.
+            boot.loader.systemd-boot.enable = lib.mkForce false;
+
+            boot.lanzaboote = {
+              enable = true;
+              pkiBundle = "/var/lib/sbctl";
+            };
+          })
+        ];
+      };
     };
   };
 }
