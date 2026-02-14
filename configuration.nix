@@ -24,7 +24,7 @@
     algorithm = "lz4";
     memoryPercent = 50;
   };
-  # NVIDIA drivers not being able to install
+  # Fix for NVIDIA GPU drivers not being able to install
   security.pki.certificateFiles = [];
   services.openssh.enable = true; # Enable OpenSSH daemon
   security.pki.installCACerts = true;
@@ -82,9 +82,9 @@
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
-  boot.plymouth.enable = true;
+  boot.plymouth.enable = true; # Enable Plymouth
   # Use latest kernel.
-  boot.kernelPackages = pkgs.linuxPackages_zen;
+  boot.kernelPackages = pkgs.linuxPackages_zen; # Use the Zen kernel
 
   networking.hostName = "repeater"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
@@ -209,14 +209,13 @@
   mako
   libnotify
   swww
-  rofi
+  wofi
   networkmanagerapplet
   grim
   slurp
   wl-clipboard
   zip
   unzip
-  killall
   bat
   tree
   tealdeer
