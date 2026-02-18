@@ -5,7 +5,10 @@
     # Use unstable packages
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     # Install homemanager
-    home-manager.url = "github:nix-community/home-manager";
+    home-manager = {
+      url = "github:nix-community/home-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     # Install hyprKCS
     hyprKCS.url = "github:kosa12/hyprKCS";
     # Install nixmate
@@ -24,7 +27,7 @@
 
         modules = [
 	  ./configuration.nix
-
+          home-manager.nixosModules.home-manager
           lanzaboote.nixosModules.lanzaboote
 
           ({ pkgs, lib, ... }: {
@@ -33,6 +36,12 @@
               nixmate.packages.${pkgs.system}.default
 	      pkgs.sbctl
             ];
+
+	    home-manager = {
+	      useGlobalPkgs = true;
+	      useUserPackages = true;
+	      users.soldafon = ./home.nix;
+	    };
 
             boot.loader.systemd-boot.enable = lib.mkForce false;
 
