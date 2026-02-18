@@ -24,8 +24,9 @@
     algorithm = "lz4";
     memoryPercent = 50;
   };
-  # Enable intel microcode
+  # Microcode + firmware
   hardware.cpu.intel.updateMicrocode = true;
+  hardware.enableRedistributableFirmware = true;
   # CPU governor
   powerManagement.cpuFreqGovernor = "performance";
   # Fix for NVIDIA GPU drivers not being able to install
@@ -67,15 +68,24 @@
     WLR_NO_HARDWARE_CURSORS = "1";
     NIXOS_OZONE_WL = "1";
   };
-  # Btrfs tweaks
+  # Disk tweaks
   fileSystems."/" = {
     fsType = "btrfs";
     options = [
+      "subvol=@"
       "noatime"
       "compress=zstd:3"
       "space_cache=v2"
     ];
   };
+
+  fileSystems."/home".options = [
+    "noatime"
+    "compress=zstd:3"
+    "space_cache=v2"
+  ];
+
+  swapDevices = lib.mkForce [ ];
   # Enable flakes
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
   # Allow unfree packages
