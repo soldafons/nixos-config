@@ -14,8 +14,8 @@
   # Automatic garbage collection
   nix.gc = {
     automatic = true;
-    dates = "daily";
-    options = "--delete-older-than 2d";
+    dates = "weekly";
+    options = "--delete-older-than 3d";
   };
   # Enable ZRam
   zramSwap = {
@@ -24,6 +24,10 @@
     algorithm = "lz4";
     memoryPercent = 50;
   };
+  # Enable intel microcode
+  hardware.cpu.intel.updateMicrocode = true;
+  # CPU governor
+  powerManagement.cpuFreqGovernor = "performance";
   # Fix for NVIDIA GPU drivers not being able to install
   security.pki.certificateFiles = [];
   services.openssh.enable = true; # Enable OpenSSH daemon
@@ -63,7 +67,15 @@
     WLR_NO_HARDWARE_CURSORS = "1";
     NIXOS_OZONE_WL = "1";
   };
-
+  # Btrfs tweaks
+  fileSystems."/" = {
+    fsType = "btrfs";
+    options = [
+      "noatime"
+      "compress=zstd:3"
+      "space_cache=v2"
+    ];
+  };
   # Enable flakes
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
   # Allow unfree packages
@@ -83,6 +95,10 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
   boot.plymouth.enable = true; # Enable Plymouth
+  # Systemd tweaks
+  systemd.services.NetworkManager-wait-online.enable = false;
+  boot.initrd.systemd.enable = true;
+  systemd.services.nix-gc.wantedBy = [ ];
   # Use latest kernel.
   boot.kernelPackages = pkgs.linuxPackages_zen; # Use the Zen kernel
 
@@ -136,7 +152,7 @@
   };
 
   # Enable CUPS to print documents.
-  services.printing.enable = true;
+  services.printing.enable = false;
 
   # Enable sound with pipewire.
   services.pulseaudio.enable = false;
@@ -172,17 +188,15 @@
   # Install packages
   environment.systemPackages = with pkgs; [
   kitty
+  fish
   librewolf
   telegram-desktop
   mullvad-vpn
   vlc
   fastfetch
-  cmatrix
-  cowsay
   libreoffice
   python314
   javaPackages.compiler.temurin-bin.jre-21
-  fortune
   yazi
   wget
   git
@@ -200,7 +214,6 @@
   razer-cli
   razergenie
   vulkan-tools
-  bottles
   zerotierone
   (waybar.overrideAttrs (oldAttrs: {
     mesonFlags = oldAttrs.mesonFlags ++ ["-Dexperimental=true"];
@@ -225,6 +238,7 @@
   gtk4
   revolt-desktop
   sbctl
+  ripgrep
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
