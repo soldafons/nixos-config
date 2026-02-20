@@ -85,7 +85,6 @@
     "space_cache=v2"
   ];
 
-  swapDevices = lib.mkForce [ ];
   # Enable flakes
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
   # Allow unfree packages
@@ -94,17 +93,33 @@
   services.mullvad-vpn.enable = true;
   # Enable earlyOOM
   services.earlyoom.enable = true;
-  # Font installation
-  fonts.packages = with pkgs; [
-  nerd-fonts.jetbrains-mono
-  _0xproto
-  nerd-fonts.fantasque-sans-mono
-  ];
-
+  # Font setup
+  fonts = {
+    enableDefaultPackages = true;
+    packages = with pkgs; [
+      nerd-fonts.jetbrains-mono
+      _0xproto
+      nerd-fonts.fantasque-sans-mono
+    ];
+    fontconfig = {
+      defaultFonts = {
+        serif = ["_0xproto"];
+        sansSerif = ["_0xproto"];
+        monospace = ["_0xproto"];
+      };
+    };
+  };
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
   boot.plymouth.enable = true; # Enable Plymouth
+  boot.kernelParams = [
+    "quiet"
+    "loglevel=3"
+    "splash"
+    "nowatchdog"
+    "idle=nomwait"
+  ];
   # Systemd tweaks
   systemd.services.NetworkManager-wait-online.enable = false;
   boot.initrd.systemd.enable = true;
