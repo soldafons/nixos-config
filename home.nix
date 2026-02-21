@@ -12,6 +12,7 @@
     cmatrix
   ];
 
+
   # This value determines the Home Manager release that your
   # configuration is compatible with. This helps avoid breakage
   # when a new Home Manager release introduces backwards
@@ -25,4 +26,26 @@
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
   programs.git.enable = true;
+
+  programs = {
+    nushell = { enable = true;
+      configFile.source = /home/soldafon/.config/nushell/config.nu;
+      settings = {
+        show_banner = false;
+      };
+    };
+
+    carapace.enable = true;
+    carapace.enableNushellIntegration = true;
+
+    starship = { enable = true;
+      settings = {
+        add_newline = true;
+        character = {
+          success_symbol = "[➜](bold green)";
+          error_symbol = "[➜](bold red)";
+        };
+      };
+    };
+  };
 }

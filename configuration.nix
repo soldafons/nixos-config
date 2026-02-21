@@ -8,7 +8,7 @@
 {
   imports =
     [ # Include the results of the hardware scan.
-      /etc/nixos/hardware-configuration.nix 
+      /etc/nixos/hardware-configuration.nix
     ];
 
   # Automatic garbage collection
@@ -201,6 +201,7 @@
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.soldafon = {
     isNormalUser = true;
+    shell = pkgs.nushell;
     description = "soldafon";
     extraGroups = [ "networkmanager" "wheel" "plugdev"];
     packages = with pkgs; [
@@ -213,7 +214,8 @@
   # Install packages
   environment.systemPackages = with pkgs; [
   kitty
-  fish
+  ghostty
+  nushell
   librewolf
   telegram-desktop
   mullvad-vpn
@@ -264,6 +266,9 @@
   revolt-desktop
   sbctl
   ripgrep
+  inotify-tools
+  inotify-info
+  jetbrains.pycharm
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
