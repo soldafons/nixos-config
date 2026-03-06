@@ -41,7 +41,7 @@
 	      useGlobalPkgs = true;
 	      useUserPackages = true;
 	      users.soldafon = ./home.nix;
-        backupFileExtension = "backup";
+        backupFileExtension = "backup"; 
 	    };
 
             boot.loader.systemd-boot.enable = lib.mkForce false;

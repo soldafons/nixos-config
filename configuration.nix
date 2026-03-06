@@ -268,7 +268,7 @@
   ripgrep
   inotify-tools
   inotify-info
-  jetbrains.pycharm
+  jetbrains.pycharm-oss
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
