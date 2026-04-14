@@ -1,13 +1,17 @@
 # Soldafon's Config
 
 ## Features
-> Home-Manager
+> Home-Manager  
 > Flakes
 
 ## Hardware
-> GTX750
-> i7-6700
-> 16GB DDR4
-> 1TB HDD
+>H110M-DS2
+>>GTX750  
+>>i7-6700  
+>>>16GB DDR4  
+>>>1TB HDD
 
-### the next few commits will add a lot of stuff
+## Planned
+> Flake-parts  
+> Dendritic Pattern  
+> Hjem ( maybe )
