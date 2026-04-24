@@ -29,34 +29,20 @@
   hardware.enableRedistributableFirmware = true;
   # CPU governor
   powerManagement.cpuFreqGovernor = "performance";
-  # Fix for NVIDIA GPU drivers not being able to install
-  security.pki.certificateFiles = [];
-  services.openssh.enable = true; # Enable OpenSSH daemon
-  security.pki.installCACerts = true;
-
-  environment.variables = {
-    SSL_CERT_FILE = "${pkgs.cacert}/etc/ssl/certs/ca-bundle.crt";
-    NIX_SSL_CERT_FILE = "${pkgs.cacert}/etc/ssl/certs/ca-bundle.crt";
-  };
-
-  nix.settings.ssl-cert-file =
-    "${pkgs.cacert}/etc/ssl/certs/ca-bundle.crt";
-
-  services.resolved.enable = true;
-  services.resolved.settings.Resolve.FallbackDNS = [ "1.1.1.1" "8.8.8.8" ];
   # Enable OpenGL
   hardware.graphics = {
     enable = true;
     enable32Bit = true;
   };
   # NVIDIA GPU drivers setup
-  services.xserver.videoDrivers = ["nvidia"];
-  hardware.nvidia.open = false;
-  hardware.nvidia.modesetting.enable = true;
-  hardware.nvidia.nvidiaSettings = true;
-  hardware.nvidia.powerManagement.enable = true;
+  hardware.nvidia = {
+    open = false;
+    modesetting.enable = true;
+    nvidiaSettings = true;
+    powerManagement.enable = true;
+    package = config.boot.kernelPackages.nvidiaPackages.production;
+  };
   nixpkgs.config.nvidia.acceptLicense = true;
-  hardware.nvidia.package = config.boot.kernelPackages.nvidiaPackages.production;
 
   # Steam tweaks
   programs.steam.enable = true;
@@ -119,6 +105,7 @@
     "splash"
     "nowatchdog"
     "idle=nomwait"
+    "nvidia-drm.modeset=1"
   ];
   # Systemd tweaks
   systemd.services.NetworkManager-wait-online.enable = false;
@@ -136,9 +123,18 @@
 
   # Enable networking
   networking.networkmanager.enable = true;
+  networking.nameservers = [ "1.1.1.1" "8.8.8.8" ];
   networking.networkmanager.dns = "systemd-resolved";
+  services.resolved = {
+    enable = true;
+    settings = {
+      Resolve.FallbackDNS = [ "1.1.1.1" "8.8.8.8" ];
+    };
+  };
   hardware.bluetooth.enable = true; # Enable bluetooth
   services.zerotierone.enable = true; # Enable zerotier
+  security.pki.installCACerts = true;
+  services.openssh.enable = true;
   # Open-Razer setup
   hardware.openrazer.enable = true;
   hardware.openrazer.users = ["soldafon"];
@@ -161,23 +157,18 @@
     LC_TIME = "uk_UA.UTF-8";
   };
 
-  # Enable the X11 windowing system.
-  # You can disable this if you're only using the Wayland session.
-  services.xserver.enable = true;
-
-  # Enable Hyprland
-  services.displayManager.sddm.enable = true;
+  # Desktop
+  services.displayManager.ly = {
+    enable = true;
+  };
   programs.hyprland.enable = true;
   xdg.portal.enable = true;
-  xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
-  # Configure keymap in X11
+  xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-hyprland ];
+  # keymap
   services.xserver.xkb = {
     layout = "us";
     variant = "";
   };
-
-  # Enable CUPS to print documents.
-  services.printing.enable = false;
 
   # Enable sound with pipewire.
   services.pulseaudio.enable = false;
@@ -213,12 +204,10 @@
 
   # Install packages
   environment.systemPackages = with pkgs; [
-  kitty
   ghostty
   nushell
   librewolf
   telegram-desktop
-  mullvad-vpn
   vlc
   fastfetch
   libreoffice
@@ -248,7 +237,7 @@
   )
   mako
   libnotify
-  swww
+  awww
   wofi
   networkmanagerapplet
   grim
@@ -259,16 +248,12 @@
   bat
   tree
   tealdeer
-  hyprpicker
-  rustc
-  cargo
-  gtk4
-  revolt-desktop
   sbctl
   ripgrep
-  inotify-tools
-  inotify-info
   jetbrains.pycharm-oss
+  aria2
+  btop
+  uv
   ];
 
   # Some programs need SUID wrappers, can be configured further or are

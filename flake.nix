@@ -9,10 +9,6 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    # Install hyprKCS
-    hyprKCS.url = "github:kosa12/hyprKCS";
-    # Install nixmate
-    nixmate.url = "github:daskladas/nixmate";
     # Install lanzaboote
     lanzaboote = {
       url = "github:nix-community/lanzaboote/v1.0.0";
@@ -20,31 +16,30 @@
     };
   };
 
-  outputs = { self, nixpkgs, lanzaboote, home-manager, hyprKCS, nixmate, ...}: {
+  outputs = { self, nixpkgs, lanzaboote, home-manager, ...}: {
     nixosConfigurations = {
       repeater = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
 
         modules = [
-	  ./configuration.nix
+	        ./configuration.nix
           home-manager.nixosModules.home-manager
           lanzaboote.nixosModules.lanzaboote
 
           ({ pkgs, lib, ... }: {
 
             environment.systemPackages = [
-              nixmate.packages.${pkgs.system}.default
-	      pkgs.sbctl
+              pkgs.sbctl
             ];
 
-	    home-manager = {
-	      useGlobalPkgs = true;
-	      useUserPackages = true;
-	      users.soldafon = ./home.nix;
-        backupFileExtension = "backup"; 
-	    };
+	        home-manager = {
+	          useGlobalPkgs = true;
+	          useUserPackages = true;
+	          users.soldafon = ./home.nix;
+            backupFileExtension = "backup"; 
+	        };
 
-            boot.loader.systemd-boot.enable = lib.mkForce false;
+          boot.loader.systemd-boot.enable = lib.mkForce false;
 
             boot.lanzaboote = {
               enable = true;
@@ -56,3 +51,4 @@
     };
   };
 }
+
