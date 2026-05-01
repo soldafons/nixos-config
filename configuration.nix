@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, lib, inputs, ... }:
+{ config, pkgs, ... }:
 
 
 {
@@ -10,66 +10,6 @@
     [ # Include the results of the hardware scan.
       /etc/nixos/hardware-configuration.nix
     ];
-
-  # Automatic garbage collection
-  nix.gc = {
-    automatic = true;
-    dates = "weekly";
-    options = "--delete-older-than 3d";
-  };
-  # Enable ZRam
-  zramSwap = {
-    enable = true;
-    priority = 100;
-    algorithm = "lz4";
-    memoryPercent = 50;
-  };
-  # Microcode + firmware
-  hardware.cpu.intel.updateMicrocode = true;
-  hardware.enableRedistributableFirmware = true;
-  # CPU governor
-  powerManagement.cpuFreqGovernor = "performance";
-  # Enable OpenGL
-  hardware.graphics = {
-    enable = true;
-    enable32Bit = true;
-  };
-  # NVIDIA GPU drivers setup
-  hardware.nvidia = {
-    open = false;
-    modesetting.enable = true;
-    nvidiaSettings = true;
-    powerManagement.enable = true;
-    package = config.boot.kernelPackages.nvidiaPackages.production;
-  };
-  nixpkgs.config.nvidia.acceptLicense = true;
-
-  # Steam tweaks
-  programs.steam.enable = true;
-  programs.steam.gamescopeSession.enable = true;
-  programs.gamemode.enable = true;
-  environment.sessionVariables = {
-    STEAM_EXTRA_COMPAT_TOOLS_PATHS =
-      "\${HOME}/.steam/root/compatibilitytools.d";
-    WLR_NO_HARDWARE_CURSORS = "1";
-    NIXOS_OZONE_WL = "1";
-  };
-  # Disk tweaks
-  fileSystems."/" = {
-    fsType = "btrfs";
-    options = [
-      "subvol=@"
-      "noatime"
-      "compress=zstd:3"
-      "space_cache=v2"
-    ];
-  };
-
-  fileSystems."/home".options = [
-    "noatime"
-    "compress=zstd:3"
-    "space_cache=v2"
-  ];
 
   # Enable flakes
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
@@ -79,127 +19,32 @@
   services.mullvad-vpn.enable = true;
   # Enable earlyOOM
   services.earlyoom.enable = true;
-  # Font setup
-  fonts = {
-    enableDefaultPackages = true;
-    packages = with pkgs; [
-      nerd-fonts.jetbrains-mono
-      _0xproto
-      nerd-fonts.fantasque-sans-mono
-    ];
-    fontconfig = {
-      defaultFonts = {
-        serif = ["_0xproto"];
-        sansSerif = ["_0xproto"];
-        monospace = ["_0xproto"];
-      };
-    };
-  };
-  # Bootloader.
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
-  boot.plymouth.enable = true; # Enable Plymouth
-  boot.kernelParams = [
-    "quiet"
-    "loglevel=3"
-    "splash"
-    "nowatchdog"
-    "idle=nomwait"
-    "nvidia-drm.modeset=1"
-  ];
+
+
   # Systemd tweaks
   systemd.services.NetworkManager-wait-online.enable = false;
   boot.initrd.systemd.enable = true;
   systemd.services.nix-gc.wantedBy = [ ];
-  # Use latest kernel.
-  boot.kernelPackages = pkgs.linuxPackages_zen; # Use the Zen kernel
+  
 
-  networking.hostName = "repeater"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
-  # Enable networking
-  networking.networkmanager.enable = true;
-  networking.nameservers = [ "1.1.1.1" "8.8.8.8" ];
-  networking.networkmanager.dns = "systemd-resolved";
-  services.resolved = {
-    enable = true;
-    settings = {
-      Resolve.FallbackDNS = [ "1.1.1.1" "8.8.8.8" ];
-    };
-  };
-  hardware.bluetooth.enable = true; # Enable bluetooth
-  services.zerotierone.enable = true; # Enable zerotier
-  security.pki.installCACerts = true;
-  services.openssh.enable = true;
-  # Open-Razer setup
-  hardware.openrazer.enable = true;
-  hardware.openrazer.users = ["soldafon"];
-  hardware.rtl-sdr.enable = true;
-  # Set your time zone.
-  time.timeZone = "Europe/Kyiv";
 
-  # Select internationalisation properties.
-  i18n.defaultLocale = "en_US.UTF-8";
-
-  i18n.extraLocaleSettings = {
-    LC_ADDRESS = "uk_UA.UTF-8";
-    LC_IDENTIFICATION = "uk_UA.UTF-8";
-    LC_MEASUREMENT = "uk_UA.UTF-8";
-    LC_MONETARY = "uk_UA.UTF-8";
-    LC_NAME = "uk_UA.UTF-8";
-    LC_NUMERIC = "uk_UA.UTF-8";
-    LC_PAPER = "uk_UA.UTF-8";
-    LC_TELEPHONE = "uk_UA.UTF-8";
-    LC_TIME = "uk_UA.UTF-8";
-  };
 
   # Desktop
   services.displayManager.ly = {
     enable = true;
   };
-  programs.hyprland.enable = true;
+  programs.hyprland = {
+    enable = true;
+    xwayland.enable = true;
+  };
   xdg.portal.enable = true;
   xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-hyprland ];
-  # keymap
-  services.xserver.xkb = {
-    layout = "us";
-    variant = "";
-  };
-
-  # Enable sound with pipewire.
-  services.pulseaudio.enable = false;
-  security.rtkit.enable = true;
-  services.pipewire = {
-    enable = true;
-    alsa.enable = true;
-    alsa.support32Bit = true;
-    pulse.enable = true;
-    # If you want to use JACK applications, uncomment this
-    #jack.enable = true;
-
-    # use the example session manager (no others are packaged yet so this is enabled by default,
-    # no need to redefine it in your config for now)
-    #media-session.enable = true;
-  };
-
-  # Enable touchpad support (enabled default in most desktopManager).
-  # services.xserver.libinput.enable = true;
-
-  # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.soldafon = {
-    isNormalUser = true;
-    shell = pkgs.nushell;
-    description = "soldafon";
-    extraGroups = [ "networkmanager" "wheel" "plugdev"];
-    packages = with pkgs; [
-      kdePackages.kate
-    #  thunderbird
-    ];
-  };
 
 
   # Install packages
@@ -248,12 +93,12 @@
   bat
   tree
   tealdeer
-  sbctl
   ripgrep
   jetbrains.pycharm-oss
   aria2
   btop
   uv
+  xwayland-satellite
   ];
 
   # Some programs need SUID wrappers, can be configured further or are

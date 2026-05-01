@@ -3,6 +3,8 @@
 ## Features
 > Home-Manager  
 > Flakes
+>> Flake-parts
+> ly
 
 ## Hardware
 >H110M-DS2
@@ -12,6 +14,5 @@
 >>>1TB HDD
 
 ## Planned
-> Flake-parts  
 > Dendritic Pattern  
 > Hjem ( maybe )
