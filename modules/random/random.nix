@@ -1,3 +1,4 @@
+
 # Edit this configuration file to define what should be installed on
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
@@ -16,12 +17,7 @@
   python314
   javaPackages.compiler.temurin-bin.jre-21
   yazi
-  wget
-  git
-  curl
-  vim
   vesktop
-  pnpm
   prismlauncher
   protonup-ng
   mangohud
@@ -45,12 +41,6 @@
   grim
   slurp
   wl-clipboard
-  zip
-  unzip
-  bat
-  tree
-  tealdeer
-  ripgrep
   jetbrains.pycharm-oss
   aria2
   btop

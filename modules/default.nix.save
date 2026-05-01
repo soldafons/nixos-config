@@ -13,8 +13,8 @@
     ./nixos/nixos.nix
     ./desktop/desktop.nix
     ./systemd/d.nix
-    ./random/random.nix
-    ./tools/tools.nix
+#    ./random/random.nix
+     ./tools/tools.nix
   ];
 }
 
