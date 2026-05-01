@@ -17,13 +17,13 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     # mangowc
-    mangowc = {
-      url = "github:DreamMaoMao/mangowc";
+    mangowm = {
+      url = "github:mangowm/mango";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
-  outputs = inputs @ { self, nixpkgs, flake-parts, home-manager, lanzaboote, mangowc, ... }:
+  outputs = inputs @ { self, nixpkgs, flake-parts, home-manager, lanzaboote, mangowm, ... }:
     flake-parts.lib.mkFlake { inherit inputs; } {
       flake = {
         nixosConfigurations = {
@@ -32,11 +32,10 @@
             specialArgs = { inherit inputs; };
 
             modules = [
-              ./configuration.nix
               ./modules
               home-manager.nixosModules.home-manager
               lanzaboote.nixosModules.lanzaboote
-              mangowc.nixosModules.mango
+              mangowm.nixosModules.mango
             ];
           };
         };

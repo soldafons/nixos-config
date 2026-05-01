@@ -1,4 +1,4 @@
-{ config, ... }: {
+{ config, pkgs, ... }: {
   # Enable ZRam
   zramSwap = {
     enable = true;
@@ -6,6 +6,8 @@
     algorithm = "lz4";
     memoryPercent = 50;
   };
+  # Enable earlyOOM
+  services.earlyoom.enable = true;
   # CPU governor
   powerManagement.cpuFreqGovernor = "performance";
   # Microcode + firmware
