@@ -5,13 +5,12 @@
     };
   };
   programs = {
-    hyprland = {
+    mango = {
       enable = true;
-      xwayland.enable = true;
     };
   };
   xdg.portal = {
     enable = true;
-    extraPortals = [ pkgs.xdg-desktop-portal-hyprland ];
+    extraPortals = [ pkgs.xdg-desktop-portal-wlr ];
   };
 }

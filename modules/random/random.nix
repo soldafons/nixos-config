@@ -4,9 +4,6 @@
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
 { config, pkgs, ... }: {
-  # Enable mullvad
-  services.mullvad-vpn.enable = true;
-  # Install packages
   environment.systemPackages = with pkgs; [
   ghostty
   librewolf

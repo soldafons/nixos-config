@@ -1,6 +1,6 @@
 { ... }: {
   imports = [
-    ./mango/mango.nix
+    ./mango
     ./nushell/nushell.nix
     ./home/hm.nix
   ];

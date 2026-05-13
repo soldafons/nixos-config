@@ -7,7 +7,10 @@
     memoryPercent = 50;
   };
   # Enable earlyOOM
-  services.earlyoom.enable = true;
+  services = {
+    earlyoom.enable = true;
+    xserver.videoDrivers = ["nvidia"];
+  };
   # CPU governor
   powerManagement.cpuFreqGovernor = "performance";
   # Microcode + firmware
@@ -33,7 +36,7 @@
       modesetting.enable = true;
       nvidiaSettings = true;
       powerManagement.enable = true;
-      package = config.boot.kernelPackages.nvidiaPackages.production;
+      package = config.boot.kernelPackages.nvidiaPackages.legacy_580;
     };
   };
   nixpkgs.config.nvidia.acceptLicense = true;

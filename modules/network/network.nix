@@ -15,6 +15,7 @@
     };
     zerotierone.enable = true;
     openssh.enable = true;
+    mullvad-vpn.enable = true;
   };
   hardware.bluetooth.enable = true; # Enable bluetooth
   security.pki.installCACerts = true;
