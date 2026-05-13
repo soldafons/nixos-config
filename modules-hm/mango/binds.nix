@@ -16,5 +16,8 @@
     "SUPER,r,reload_config"
     # Window
     # Workspace
+    "SUPER,f1,comboview,1"
+    "SUPER,f2,comboview,2"
+    "SUPER,f3,comboview,3"
   ];
 }

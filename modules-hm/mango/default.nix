@@ -1,7 +1,7 @@
 { ... }: {
   imports = [
     ./mango.nix
-    ./windows.nix
+    ./windows
     ./binds.nix
     ./monitor.nix
   ];
