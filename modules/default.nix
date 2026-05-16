@@ -3,7 +3,7 @@
     ./audio/audio.nix
     ./boot/boot.nix
     ./disk/disk.nix
-    ./fonts/fonts.nix
+    ./details/details.nix
     ./hardware/hardware.nix
     ./home/home.nix
     ./network/network.nix

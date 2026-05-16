@@ -6,7 +6,6 @@ A config for my barely working PC
 | name                                      | description                           |
 | ----------------------------------------- | ------------------------------------- |
 | [Home-Manager](https://github.com/nix-community/home-manager)     | System for managing user environment |
-| [Ly](https://codeberg.org/fairyglade/ly)           | Lightweight TUI display manager          |
 | [Flakes](https://wiki.nixos.org/wiki/Flakes)            | Nix feature for more reproducible installs            |
 | [Flake-parts](https://flake.parts/)             | Framework for managing Nix flakes     |
 | [Lanzaboote](https://github.com/nix-community/lanzaboote)      | Secure boot on NixOS  |
@@ -16,6 +15,8 @@ A config for my barely working PC
 | name                                      | description                           |
 | ----------------------------------------- | ------------------------------------- |
 | [Mango](https://mangowm.github.io/)      | Modern wayland window compositor based on wlroots & scenefx |
+| [Ly](https://codeberg.org/fairyglade/ly)           | Lightweight TUI display manager          |
+| [Quickshell](https://quickshell.org/)           | Toolkit for desktop shells          |
 | [Ghostty](https://ghostty.org)           | GTK-native , GPU-accelerated terminal emulator          |
 | [Nushell](https://nushell.sh)            | Purely functional shell with structured data            |
 | [Neovim](https://neovim.io/)             | Modernised version of Vim with expandability     |
@@ -33,8 +34,8 @@ A config for my barely working PC
 
 
 ## Planned
-> Dendritic pattern  
-> Expand the config
+> Modulerise everything
+> Rice!
 
 # Thanks to
 ### [Bricked](https://bricked.dev/)  

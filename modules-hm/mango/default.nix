@@ -4,5 +4,6 @@
     ./windows
     ./binds.nix
     ./monitor.nix
+    ./animations.nix
   ];
 }

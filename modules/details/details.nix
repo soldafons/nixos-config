@@ -1,4 +1,9 @@
 { pkgs, ... }: {
+  # Cursors
+  environment.systemPackages = with pkgs; [
+    bibata-cursors
+  ];
+  # Fonts
   fonts = {
     enableDefaultPackages = true;
     packages = with pkgs; [

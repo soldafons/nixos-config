@@ -2,8 +2,7 @@
   wayland.windowManager.mango.settings = {
     # Border
     border = {
-      radius = 24;
-      # radius_location_default = 0; not released yet? not sure
+      radius = 20;
     };
     borderpx = 3; # border outline
     focuscolor = "0x289dbdff"; # Active border colour
