@@ -2,14 +2,13 @@
   programs = {
     nushell = {
       enable = true;
-      configFile.source = /home/soldafon/.config/nushell/config.nu;
       settings = {
         show_banner = false;
         buffer_editor = "nvim";
       };
       shellAliases = {
-        cat = "bat";
         cd = "z";
+        cat = "bat";
         lsl = "ls -l";
         ga = "git add -A";
         gp = "git push";
@@ -19,9 +18,6 @@
     zoxide = {
       enable = true;
       enableNushellIntegration = true;
-      options = [
-        "--cmd cd"
-      ];
     };
     carapace = {
       enable = true;

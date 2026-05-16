@@ -11,6 +11,5 @@
 	    tree
 	    tealdeer
 	    ripgrep
-      zoxide
     ];
 }

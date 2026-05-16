@@ -8,12 +8,10 @@
   ghostty
   librewolf
   telegram-desktop
-  vlc
   fastfetch
   libreoffice
   python314
   javaPackages.compiler.temurin-bin.jre-21
-  yazi
   vesktop
   prismlauncher
   protonup-ng
@@ -26,10 +24,6 @@
   razergenie
   vulkan-tools
   zerotierone
-  (waybar.overrideAttrs (oldAttrs: {
-    mesonFlags = oldAttrs.mesonFlags ++ ["-Dexperimental=true"];
-    })
-  )
   mako
   libnotify
   awww
