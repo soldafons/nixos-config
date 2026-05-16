@@ -7,6 +7,21 @@
         show_banner = false;
         buffer_editor = "nvim";
       };
+      shellAliases = {
+        cat = "bat";
+        cd = "z";
+        lsl = "ls -l";
+        ga = "git add -A";
+        gp = "git push";
+        nhs = "nh os switch ~/dotfiles/nixdots --impure";
+      };
+    };
+    zoxide = {
+      enable = true;
+      enableNushellIntegration = true;
+      options = [
+        "--cmd cd"
+      ];
     };
     carapace = {
       enable = true;

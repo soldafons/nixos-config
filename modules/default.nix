@@ -4,7 +4,6 @@
     ./boot/boot.nix
     ./disk/disk.nix
     ./fonts/fonts.nix
-    ./garbage/gc.nix
     ./hardware/hardware.nix
     ./home/home.nix
     ./network/network.nix
