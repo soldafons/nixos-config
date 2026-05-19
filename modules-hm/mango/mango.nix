@@ -8,10 +8,6 @@
         layout = "us,ua";
         options = "grp:alt_shift_toggle";
       };
-      cursor = {
-        size = 24;
-        theme = "Bibata-Modern-Ice";
-      };
     };
     # Autostart
     autostart_sh = ''

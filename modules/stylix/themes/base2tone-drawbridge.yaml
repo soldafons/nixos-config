@@ -1,0 +1,21 @@
+system: "base16"
+name: "Base2Tone Drawbridge"
+author: "atelierbram, ported by soldafon"
+variant: "dark"
+palette:
+  base00: "1b1f32"  # background
+  base01: "252a41"  # palette 10 
+  base02: "444b6f"  # selection-background (palette 11)
+  base03: "51587b"  # palette 8
+  base04: "5e6587"  # palette 12
+  base05: "9094a7"  # foreground (palette 7)
+  base06: "c3cdfe"  # palette 13
+  base07: "e1e6ff"  # palette 15
+  base08: "7289fd"  # red slot ( palette 4 )
+  base09: "627af4"  # palette 1
+  base0A: "75d5f0"  # palette 9
+  base0B: "67c9e4"  # palette 2
+  base0C: "289dbd"  # cursor
+  base0D: "8b9efd"  # palette 6
+  base0E: "99e9ff"  # palette 3
+  base0F: "5cbcd6"  # palette 14

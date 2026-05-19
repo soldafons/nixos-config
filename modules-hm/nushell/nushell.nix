@@ -6,6 +6,10 @@
         show_banner = false;
         buffer_editor = "nvim";
       };
+      extraConfig = ''
+        cd ~/dotfiles/nixdots
+        fastfetch
+      '';
       shellAliases = {
         cd = "z";
         cat = "bat";
@@ -13,6 +17,7 @@
         ga = "git add -A";
         gp = "git push";
         nhs = "nh os switch ~/dotfiles/nixdots --impure";
+        nhb = "nh os boot ~/dotfiles/nixdots --impure";
       };
     };
     zoxide = {

@@ -3,7 +3,7 @@
     ./audio/audio.nix
     ./boot/boot.nix
     ./disk/disk.nix
-    ./details/details.nix
+    ./fonts/fonts.nix
     ./hardware/hardware.nix
     ./home/home.nix
     ./network/network.nix
@@ -14,6 +14,7 @@
     ./systemd/d.nix
     ./random/random.nix
     ./tools/tools.nix
+    ./stylix/stylix.nix
   ];
 }
 

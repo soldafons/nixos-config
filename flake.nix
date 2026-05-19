@@ -16,14 +16,18 @@
       url = "github:nix-community/lanzaboote/v1.0.0";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    # mangowc
+    # mangow
     mangowm = {
       url = "github:mangowm/mango";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    stylix = {
+      url = "github:nix-community/stylix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = inputs @ { self, nixpkgs, flake-parts, home-manager, lanzaboote, mangowm, ... }:
+  outputs = inputs @ { self, nixpkgs, flake-parts, home-manager, lanzaboote, mangowm, stylix, ... }:
     flake-parts.lib.mkFlake { inherit inputs; } {
       flake = {
         nixosConfigurations = {
@@ -36,6 +40,7 @@
               home-manager.nixosModules.home-manager
               lanzaboote.nixosModules.lanzaboote
               mangowm.nixosModules.mango
+              stylix.nixosModules.stylix
             ];
           };
         };
