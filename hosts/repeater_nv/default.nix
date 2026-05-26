@@ -1,15 +1,29 @@
 { config, pkgs, ... }: {
-  # Enable ZRam
-  zramSwap = {
-    enable = true;
-    priority = 100;
-    algorithm = "lz4";
-    memoryPercent = 50;
-  };
+  imports = [
+    /etc/nixos/hardware-configuration.nix
+    ../../modules
+  ];
+  # Hostname
+  networking.hostName = "repeater_nv";
+  # Enable flakes
+  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  # System version
+  system.stateVersion = "25.11";
+  # Allow unfree packages
+  nixpkgs.config.allowUnfree = true;
   # Enable earlyOOM
   services = {
     earlyoom.enable = true;
     xserver.videoDrivers = ["nvidia"];
+  };
+  # Security
+  security.pki = {
+    certificateFiles = [];
+  };
+
+  environment.variables = {
+    SSL_CERT_FILE = "${pkgs.cacert}/etc/ssl/certs/ca-bundle.crt";
+    NIX_SSL_CERT_FILE = "${pkgs.cacert}/etc/ssl/certs/ca-bundle.crt";
   };
   # CPU governor
   powerManagement.cpuFreqGovernor = "performance";
@@ -19,12 +33,6 @@
     cpu.intel.updateMicrocode = true;
     # Firmware
     enableRedistributableFirmware = true;
-    # Razer setup
-    openrazer = {
-      enable = true;
-      users = ["soldafon"];
-    };
-    rtl-sdr.enable = true;
     # Enable OpenGL
     graphics = {
       enable = true;

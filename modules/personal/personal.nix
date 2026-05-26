@@ -1,7 +1,4 @@
 { pkgs, ... }: {
-  
-  # Hostname
-  networking.hostName = "repeater";
   # User account
   users.users.soldafon = {
     isNormalUser = true;

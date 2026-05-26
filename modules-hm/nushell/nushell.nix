@@ -8,7 +8,6 @@
       };
       extraConfig = ''
         cd ~/dotfiles/nixdots
-        fastfetch
       '';
       shellAliases = {
         cd = "z";
@@ -16,8 +15,9 @@
         lsl = "ls -l";
         ga = "git add -A";
         gp = "git push";
-        nhs = "nh os switch ~/dotfiles/nixdots --impure";
-        nhb = "nh os boot ~/dotfiles/nixdots --impure";
+        nhn = "nh os switch ~/dotfiles/nixdots -H repeater_nv --impure";
+        nhs = "nh os switch ~/dotfiles/nixdots -H repeater --impure";
+        nhb = "nh os boot ~/dotfiles/nixdots -H repeater --impure";
       };
     };
     zoxide = {

@@ -4,17 +4,16 @@
     ./boot/boot.nix
     ./disk/disk.nix
     ./fonts/fonts.nix
-    ./hardware/hardware.nix
     ./home/home.nix
     ./network/network.nix
     ./personal/personal.nix
     ./steam/steam.nix
-    ./nixos/nixos.nix
     ./desktop/desktop.nix
     ./systemd/d.nix
     ./random/random.nix
     ./tools/tools.nix
     ./stylix/stylix.nix
+    #./peripherals/peripherals.nix no kernel support
   ];
 }
 

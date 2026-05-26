@@ -42,12 +42,25 @@
     flake-parts.lib.mkFlake { inherit inputs; } {
       flake = {
         nixosConfigurations = {
+          repeater_nv = nixpkgs.lib.nixosSystem {
+            system = "x86_64-linux";
+            specialArgs = { inherit inputs; };
+
+            modules = [
+              ./hosts/repeater_nv
+              home-manager.nixosModules.home-manager
+              lanzaboote.nixosModules.lanzaboote
+              mangowm.nixosModules.mango
+              stylix.nixosModules.stylix
+              lix-module.nixosModules.default
+            ];
+          };
           repeater = nixpkgs.lib.nixosSystem {
             system = "x86_64-linux";
             specialArgs = { inherit inputs; };
 
             modules = [
-              ./modules
+              ./hosts/repeater
               home-manager.nixosModules.home-manager
               lanzaboote.nixosModules.lanzaboote
               mangowm.nixosModules.mango
