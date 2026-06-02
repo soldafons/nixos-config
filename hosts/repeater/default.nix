@@ -14,7 +14,7 @@
   # Enable earlyOOM
   services = {
     earlyoom.enable = true;
-    xserver.videoDrivers = ["amdgpu"];
+    xserver.videoDrivers = [ "amdgpu" ];
   };
   # Microcode + firmware
   hardware = {
@@ -29,7 +29,7 @@
     };
   };
   boot = {
-    kernelParams = [ "amd_pstate=active" };
+    kernelParams = [ "amd_pstate=active" ];
     initrd.kernelModules = [ "amdgpu" ];
   };
 }

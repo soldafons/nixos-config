@@ -15,7 +15,6 @@
         lsl = "ls -l";
         ga = "git add -A";
         gp = "git push";
-        nhn = "nh os switch ~/dotfiles/nixdots -H repeater_nv --impure";
         nhs = "nh os switch ~/dotfiles/nixdots -H repeater --impure";
         nhb = "nh os boot ~/dotfiles/nixdots -H repeater --impure";
       };

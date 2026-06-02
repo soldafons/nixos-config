@@ -1,6 +1,6 @@
 { config, pkgs, ... }: {
   imports = [
-    /etc/nixos/hardware-configuration.nix
+    ./hardware.nix
     ../../modules
   ];
   # Hostname

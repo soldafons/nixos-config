@@ -10,7 +10,7 @@
     # Use tools
     "SUPER,p,spawn,sh -c \"grim -g '$(slurp)' - | wl-copy\""
     "SUPER,c,killclient"
-    "SUPER,f,togglemaximizescreen"
+    "SUPER,f,togglefullscreen"
     # Config
     "SUPER,m,quit"
     "SUPER,r,reload_config"

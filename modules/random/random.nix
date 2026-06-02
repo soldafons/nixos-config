@@ -5,35 +5,27 @@
 
 { config, pkgs, ... }: {
   environment.systemPackages = with pkgs; [
-  ghostty
   librewolf
   telegram-desktop
   fastfetch
-  libreoffice
   python314
   javaPackages.compiler.temurin-bin.jre-21
   vesktop
   prismlauncher
   protonup-ng
   mangohud
-  krita
   gimp
-  neovim
   openssl
   razer-cli
   razergenie
-  vulkan-tools
   zerotierone
   mako
-  libnotify
   awww
   wofi
   networkmanagerapplet
   grim
   slurp
   wl-clipboard
-  jetbrains.pycharm-oss
-  aria2
   btop
   uv
   xwayland-satellite

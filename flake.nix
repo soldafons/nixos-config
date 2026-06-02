@@ -1,5 +1,5 @@
 {
-  description = "A simple NixOS flake";
+  description = "The Flakening";
 
   inputs = {
     # Use unstable packages
