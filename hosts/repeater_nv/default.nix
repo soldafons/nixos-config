@@ -15,6 +15,9 @@
   services = {
     earlyoom.enable = true;
     xserver.videoDrivers = ["nvidia"];
+    hardware.openrgb = {
+      motherboard = "intel";
+    };
   };
   # Security
   security.pki = {
@@ -27,6 +30,16 @@
   };
   # CPU governor
   powerManagement.cpuFreqGovernor = "performance";
+  # boot
+  boot = {
+    kernelParams = [
+      "nvidia-drm.modeset=1"
+    ];
+  };
+  # steam
+  environment.sessionVariables = {
+    __GLX_VENDOR_LIBRARY_NAME = "nvidia";
+  };
   # Microcode + firmware
   hardware = {
     # Microcode

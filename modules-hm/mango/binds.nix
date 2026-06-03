@@ -2,7 +2,6 @@
   wayland.windowManager.mango.settings.bind = [
     # Open
     "SUPER,q,spawn,ghostty" # Terminal
-    "SUPER,s,spawn,wofi --show drun"
     "SUPER,1,spawn,steam"
     "SUPER,2,spawn,vesktop"
     "SUPER,3,spawn,prismlauncher"

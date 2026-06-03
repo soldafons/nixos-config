@@ -2,7 +2,7 @@
   home = {
     username = "soldafon";
     homeDirectory = "/home/soldafon";
-    stateVersion = "25.11";
+    stateVersion = "26.11";
   };
   programs = {
     home-manager.enable = true;

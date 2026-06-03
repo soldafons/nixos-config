@@ -15,6 +15,9 @@
   services = {
     earlyoom.enable = true;
     xserver.videoDrivers = [ "amdgpu" ];
+    hardware.openrgb = {
+      motherboard = "amd";
+    };
   };
   # Microcode + firmware
   hardware = {

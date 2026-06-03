@@ -17,7 +17,6 @@
       "splash"
       "nowatchdog"
       "idle=nomwait"
-      "nvidia-drm.modeset=1"
     ];  
   };
 }

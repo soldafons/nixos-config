@@ -13,7 +13,7 @@
     ./random/random.nix
     ./tools/tools.nix
     ./stylix/stylix.nix
-    #./peripherals/peripherals.nix no kernel support
+    ./peripherals
   ];
 }
 

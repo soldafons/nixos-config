@@ -3,6 +3,9 @@
     enable = true;
     base16Scheme = ./themes/base2tone-drawbridge.yaml;
     image = /home/soldafon/Pictures/Wallpapers/Drawbridge/lake1.png;
+    targets = {
+      kmscon.enable = false;
+    };
     cursor = {
       package = pkgs.bibata-cursors;
       name = "Bibata-Modern-Ice";
