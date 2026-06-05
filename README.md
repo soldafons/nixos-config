@@ -1,5 +1,5 @@
 # Soldafon's Config
-A config for my barely working PC
+A config for my very well working PC
 
 ## Features
 
@@ -26,15 +26,15 @@ A config for my barely working PC
 
 | name                                      | description                           |
 | ----------------------------------------- | ------------------------------------- |
-| Motherboard      | Gigabyte H110M-DS2 |
-| GPU           | NVIDIA GTX750          |
-| CPU            | Intel i7-6700            |
-| RAM             | ADATA XPG 16GB DDR4 3200Mhz     |
-| Space      | WD Blue 1TB Hard Drive  |
+| Motherboard      | ASUS ROG STRIX B550-F |
+| GPU           | Sapphire Radeon Rx7800XT Nitro+          |
+| CPU            | AMD Ryzen 5 5600            |
+| RAM             | ADATA XPG 32GB DDR4 3200Mhz     |
+| Space      | Samsung 990 Pro 1TB SSD M.2 NVMe  |
 
 
 ## Planned
-> Modulerise everything
+> Turn everything into a module 
 > Rice!
 
 # Thanks to

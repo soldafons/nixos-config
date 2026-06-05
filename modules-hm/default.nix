@@ -7,5 +7,6 @@
     ./stylix/stylix.nix
     ./neovim/nvim.nix
     ./ghostty
+    ./git/git.nix
   ];
 }

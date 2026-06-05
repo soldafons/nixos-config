@@ -15,8 +15,8 @@
         lsl = "ls -l";
         ga = "git add -A";
         gp = "git push";
-        nhs = "nh os switch ~/dotfiles/nixdots -H repeater --impure";
-        nhb = "nh os boot ~/dotfiles/nixdots -H repeater --impure";
+        nhs = "nh os switch ~/dotfiles/nixdots -H repeater";
+        nhb = "nh os boot ~/dotfiles/nixdots -H repeater";
       };
     };
     zoxide = {

@@ -1,14 +1,16 @@
 { config, pkgs, ... }: {
   imports = [
-    /etc/nixos/hardware-configuration.nix
+    ./hardware.nix
     ../../modules
+    ./disko.nix
+    ./preservation.nix
   ];
   # Hostname
   networking.hostName = "repeater";
   # Enable flakes
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
   # System version
-  system.stateVersion = "25.11";
+  system.stateVersion = "26.05";
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
   # Enable earlyOOM

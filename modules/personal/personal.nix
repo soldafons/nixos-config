@@ -2,9 +2,18 @@
   # User account
   users.users.soldafon = {
     isNormalUser = true;
+    hashedPasswordFile = "/persist/passwords/soldafon";
     shell = pkgs.nushell;
     description = "soldafon";
     extraGroups = [ "networkmanager" "wheel" "plugdev"]; # plugdev is for razer setup
+  };
+  users.mutableUsers = false;
+  # turn off lecture
+  security.sudo = {
+    enable = true;
+    extraConfig = ''
+      Defaults lecture=never , timestamp_timeout=30
+    '';
   };
   # Time zone
   time.timeZone = "Europe/Kyiv";

@@ -12,7 +12,7 @@
     # Autostart
     autostart_sh = ''
       awww-daemon --format xrgb &
-      awww img ~/Pictures/Wallpapers/lake1.png &
+      awww img ../../assets/wallpapers/lake1.png
       nm-applet --indicator &
       qs -c drawbridge &
       mako &

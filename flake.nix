@@ -36,9 +36,16 @@
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.lix.follows = "lix";
     };
+    preservation = { 
+      url = "github:nix-community/preservation";
+    };
+    disko = {
+      url = "github:nix-community/disko";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = inputs @ { self, nixpkgs, flake-parts, home-manager, lanzaboote, mangowm, stylix, lix-module, lix, ... }:
+  outputs = inputs @ { self, nixpkgs, flake-parts, home-manager, lanzaboote, mangowm, stylix, lix, lix-module, preservation, disko, ... }:
     flake-parts.lib.mkFlake { inherit inputs; } {
       flake = {
         nixosConfigurations = {
@@ -66,6 +73,8 @@
               mangowm.nixosModules.mango
               stylix.nixosModules.stylix
               lix-module.nixosModules.default
+	            disko.nixosModules.disko
+	            preservation.nixosModules.default
             ];
           };
         };

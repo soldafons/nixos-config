@@ -2,7 +2,7 @@
   stylix = {
     enable = true;
     base16Scheme = ./themes/base2tone-drawbridge.yaml;
-    image = /home/soldafon/Pictures/Wallpapers/Drawbridge/lake1.png;
+    image = ../../assets/wallpapers/lake1.png;
     targets = {
       kmscon.enable = false;
     };
