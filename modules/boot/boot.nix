@@ -16,7 +16,6 @@
       "loglevel=3"
       "splash"
       "nowatchdog"
-      "idle=nomwait"
     ];  
   };
 }

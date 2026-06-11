@@ -1,4 +1,19 @@
 {
+  fileSystems = {
+    "/nix".neededForBoot = true;
+    "/persist".neededForBoot = true;
+    "/" = {
+      device = "none";
+      fsType = "tmpfs";
+      options = [
+	      "defaults"
+	      "size=25%"
+	      "mode=755"
+      ];
+    };
+  };
+
+
   boot.tmp.cleanOnBoot = true;
 
   preservation = {
@@ -7,6 +22,7 @@
     preserveAt."/persist" = {
       files = [
 	      { file = "/etc/machine-id"; inInitrd = true; }
+        { file = "/etc/ly/save.txt"; how = "symlink"; configureParent = true; }
       ];
 
       directories = [
@@ -23,6 +39,7 @@
 	        "dotfiles"
 	        "Downloads"
           ".ssh"
+          ".librewolf"
           ".config/vesktop"
 	        ".local/share/zoxide"
           ".local/share/Steam"

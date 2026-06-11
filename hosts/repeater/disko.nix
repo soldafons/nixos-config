@@ -1,18 +1,4 @@
 {
-  fileSystems = {
-    "/nix".neededForBoot = true;
-    "/persist".neededForBoot = true;
-    "/" = {
-      device = "none";
-      fsType = "tmpfs";
-      options = [
-	      "defaults"
-	      "size=25%"
-	      "mode=755"
-      ];
-    };
-  };
-
   disko.devices = {
     disk = {
       main = {

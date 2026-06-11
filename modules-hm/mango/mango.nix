@@ -12,10 +12,8 @@
     # Autostart
     autostart_sh = ''
       awww-daemon --format xrgb &
-      awww img ../../assets/wallpapers/lake1.png
-      nm-applet --indicator &
+      awww img /home/soldafon/dotfiles/nixdots/assets/wallpapers/lake1.png
       qs -c drawbridge &
-      mako &
     '';
   };
 }

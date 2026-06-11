@@ -4,8 +4,6 @@
   inputs = {
     # Use unstable packages
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-    # Flake parts
-    flake-parts.url = "github:hercules-ci/flake-parts";
     # Install homemanager
     home-manager = {
       url = "github:nix-community/home-manager";
@@ -45,43 +43,37 @@
     };
   };
 
-  outputs = inputs @ { self, nixpkgs, flake-parts, home-manager, lanzaboote, mangowm, stylix, lix, lix-module, preservation, disko, ... }:
-    flake-parts.lib.mkFlake { inherit inputs; } {
-      flake = {
-        nixosConfigurations = {
-          repeater_nv = nixpkgs.lib.nixosSystem {
-            system = "x86_64-linux";
-            specialArgs = { inherit inputs; };
+  outputs = inputs @ { self, nixpkgs, home-manager, lanzaboote, mangowm, stylix, lix, lix-module, preservation, disko, ... }: {
+    nixosConfigurations = {
+      repeater_nv = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        specialArgs = { inherit inputs; };
 
-            modules = [
-              ./hosts/repeater_nv
-              home-manager.nixosModules.home-manager
-              lanzaboote.nixosModules.lanzaboote
-              mangowm.nixosModules.mango
-              stylix.nixosModules.stylix
-              lix-module.nixosModules.default
-            ];
-          };
-          repeater = nixpkgs.lib.nixosSystem {
-            system = "x86_64-linux";
-            specialArgs = { inherit inputs; };
-
-            modules = [
-              ./hosts/repeater
-              home-manager.nixosModules.home-manager
-              lanzaboote.nixosModules.lanzaboote
-              mangowm.nixosModules.mango
-              stylix.nixosModules.stylix
-              lix-module.nixosModules.default
-	            disko.nixosModules.disko
-	            preservation.nixosModules.default
-            ];
-          };
-        };
+        modules = [
+          ./hosts/repeater_nv
+          home-manager.nixosModules.home-manager
+          lanzaboote.nixosModules.lanzaboote
+          mangowm.nixosModules.mango
+          stylix.nixosModules.stylix
+          lix-module.nixosModules.default
+        ];
       };
-      systems = [
-        "x86_64-linux"
-      ];
+      repeater = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        specialArgs = { inherit inputs; };
+
+        modules = [
+          ./hosts/repeater
+          home-manager.nixosModules.home-manager
+          lanzaboote.nixosModules.lanzaboote
+          mangowm.nixosModules.mango
+          stylix.nixosModules.stylix
+          lix-module.nixosModules.default
+	        disko.nixosModules.disko
+	        preservation.nixosModules.default
+        ];
+      };
     };
+  };
 }
 

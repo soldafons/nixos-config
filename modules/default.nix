@@ -9,7 +9,7 @@
     ./personal/personal.nix
     ./steam/steam.nix
     ./desktop/desktop.nix
-    ./systemd/d.nix
+    ./systemd/systemd.nix
     ./random/random.nix
     ./tools/tools.nix
     ./stylix/stylix.nix

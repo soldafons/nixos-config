@@ -10,14 +10,10 @@
   javaPackages.compiler.temurin-bin.jre-21
   vesktop
   prismlauncher
-  mangohud
   gimp
-  openssl
   razer-cli
   razergenie
-  zerotierone
   awww
-  networkmanagerapplet
   grim
   slurp
   wl-clipboard

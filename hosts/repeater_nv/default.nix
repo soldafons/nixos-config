@@ -19,15 +19,7 @@
       motherboard = "intel";
     };
   };
-  # Security
-  security.pki = {
-    certificateFiles = [];
-  };
 
-  environment.variables = {
-    SSL_CERT_FILE = "${pkgs.cacert}/etc/ssl/certs/ca-bundle.crt";
-    NIX_SSL_CERT_FILE = "${pkgs.cacert}/etc/ssl/certs/ca-bundle.crt";
-  };
   # CPU governor
   powerManagement.cpuFreqGovernor = "performance";
   # boot
