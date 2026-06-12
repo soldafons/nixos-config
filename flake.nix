@@ -34,9 +34,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.lix.follows = "lix";
     };
+    # Preservation
     preservation = { 
       url = "github:nix-community/preservation";
     };
+    # Disko
     disko = {
       url = "github:nix-community/disko";
       inputs.nixpkgs.follows = "nixpkgs";

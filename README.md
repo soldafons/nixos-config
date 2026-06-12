@@ -7,8 +7,10 @@ A config for my very well working PC
 | ----------------------------------------- | ------------------------------------- |
 | [Home-Manager](https://github.com/nix-community/home-manager)     | System for managing user environment |
 | [Flakes](https://wiki.nixos.org/wiki/Flakes)            | Nix feature for more reproducible installs            |
-| [Flake-parts](https://flake.parts/)             | Framework for managing Nix flakes     |
+| [Disko](https://github.com/nix-community/disko)             | Declarative disk management     |
+| [Preservation](https://github.com/nix-community/preservation)             | Nuke everything on your system except what you actually need     |
 | [Lanzaboote](https://github.com/nix-community/lanzaboote)      | Secure boot on NixOS  |
+| [Stylix](https://github.com/nix-community/stylix)      | Declaratively rice your entire system  |
 
 ## Default apps
 
@@ -31,11 +33,6 @@ A config for my very well working PC
 | CPU            | AMD Ryzen 5 5600            |
 | RAM             | ADATA XPG 32GB DDR4 3200Mhz     |
 | Space      | Samsung 990 Pro 1TB SSD M.2 NVMe  |
-
-
-## Planned
-> Turn everything into a module 
-> Rice!
 
 # Thanks to
 ### [Bricked](https://bricked.dev/)  
